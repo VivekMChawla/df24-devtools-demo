@@ -19,6 +19,10 @@ if [ "$(pwd)" != "/home/codebuilder" ]; then
     exit 1
 fi
 
+# Prevent release notes from being shown after updating Salesforce CLI.
+export SF_HIDE_RELEASE_NOTES=true
+export SF_HIDE_RELEASE_NOTES_FOOTER=true
+
 # Handle script errors.
 function handle_error {
   echo
