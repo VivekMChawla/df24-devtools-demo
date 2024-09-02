@@ -12,6 +12,7 @@
 #
 # Exit on any error
 set -e
+set -x
 
 # Ensure the script is being run from the /home/codebuilder directory.
 if [ "$(pwd)" != "/home/codebuilder" ]; then
