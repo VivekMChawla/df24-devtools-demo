@@ -3,13 +3,21 @@
 # This script helps set up the CodeBuilder environment used
 # by the DF24 Developer Tools demo by doing the following:
 # 1. Update the Salesforce CLI.
-# 2. Installs code Analyzer 5 (beta)
-# 2. Installs the Typescript NPM package globally.
-# 3. Sets global Git config values for `user.name` and `user.email`
+# 2. Install code Analyzer 5 (beta)
+# 3. Install the Typescript NPM package globally.
+# 4. Remove the `df24-devtools-demo` folder (if it exists).
+# 5. Set the global Git config values for `user.name` and `user.email`
 #    This is a requirement for the Git extension for VS Code to work.
+# 6. Clone the `df24-devtools-demo` repository from GitHub.
 #
 # Exit on any error
 set -e
+
+# Ensure the script is being run from the /home/codebuilder directory.
+if [ "$(pwd)" != "/home/codebuilder" ]; then
+    echo -e  "\u274C"" Error: Current directory is not /home/codebuilder"
+    exit 1
+fi
 
 # Handle script errors.
 function handle_error {
@@ -41,7 +49,7 @@ echo -e "\U1F680"" Starting Training Lab Environment Setup"
 # Update Salesforce CLI.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(1) Update Salesforce CLI"
+echo "(1) Updating Salesforce CLI (if needed)"
 echo "───────────────────────────────────────────────────────────────────────"
 npm sf plugins install @salesforce/plugin-code-analyzer@latest-alpha
 
@@ -56,9 +64,17 @@ npm sf plugins install @salesforce/plugin-code-analyzer@latest-alpha
 # Install Typescript.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(2) Installing Typescript"
+echo "(3) Installing Typescript"
 echo "───────────────────────────────────────────────────────────────────────"
 npm install -g typescript
+
+# Remove the df24-devtools-demo folder (if it exists).
+echo
+echo "───────────────────────────────────────────────────────────────────────"
+echo "(4) Removing the df24-devtools-demo folder"
+echo "───────────────────────────────────────────────────────────────────────"
+rm -rf home/codebuilder/df24-devtools-demo
+
 
 # Disable the ERR trap and allow script errors
 # This is requied because bash interprets an attempt
@@ -79,7 +95,7 @@ trap handle_error ERR
 # This is required to before using Git features in VS Code.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(3) Setting global Git name/email config"
+echo "(5) Setting global Git name/email config"
 echo "───────────────────────────────────────────────────────────────────────"
 echo
 if [ -n "$github_user_name" ]; then
