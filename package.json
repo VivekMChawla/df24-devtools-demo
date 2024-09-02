@@ -1,8 +1,8 @@
 {
-    "name": "ebikes-lwc",
+    "name": "df24-devtools-demo",
     "private": true,
     "version": "1.0.0",
-    "description": "EBikes Sample App - Lightning Web Components",
+    "description": "DF24 DevTools Demo (Featuring the EBikes LWC Sample App)",
     "scripts": {
         "lint": "eslint **/lwc/**/*.js force-app/test/**",
         "test": "npm run test:unit",
