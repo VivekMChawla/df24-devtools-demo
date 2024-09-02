@@ -56,7 +56,7 @@ echo
 echo "───────────────────────────────────────────────────────────────────────"
 echo "(1) Updating Salesforce CLI (if needed)"
 echo "───────────────────────────────────────────────────────────────────────"
-sf update 
+sf update latest 
 
 # Install Code Analyzer 5 (beta).
 echo
