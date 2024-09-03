@@ -99,13 +99,6 @@ echo "(7) Installing Node.js dependencies inside df24-devtools-demo."
 echo "───────────────────────────────────────────────────────────────────────"
 npm install /home/codebuilder/df24-devtools-demo --prefix /home/codebuilder/df24-devtools-demo
 
-# Install the Code Analyzer PMD prototype engine.
-# echo
-# echo "───────────────────────────────────────────────────────────────────────"
-# echo "(7) Installing the Code Analyzer PMD prototype engine."
-# echo "───────────────────────────────────────────────────────────────────────"
-# npm install /home/codebuilder/df24-devtools-demo/salesforce-code-analyzer-pmd-engine-prototype.tgz --prefix /home/codebuilder/df24-devtools-demo
-
 # Disable the ERR trap and allow script errors
 # This is requied because bash interprets an attempt
 # to read an unset git config variable as an error.
