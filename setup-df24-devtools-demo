@@ -85,10 +85,17 @@ echo "(5) Cloning the df24-devtools-demo repository"
 echo "───────────────────────────────────────────────────────────────────────"
 git clone https://github.com/VivekMChawla/df24-devtools-demo.git
 
+# Create the code-analyzer-logs folder inside the demo project.
+echo
+echo "───────────────────────────────────────────────────────────────────────"
+echo "(6) Creating the code-analyzer-logs folder inside the demo project."
+echo "───────────────────────────────────────────────────────────────────────"
+mkdir /home/codebuilder/df24-devtools-demo/code-analyzer-logs
+
 # Install Node.js dependencies inside df24-devtools-demo.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(6) Installing Node.js dependencies inside df24-devtools-demo."
+echo "(7) Installing Node.js dependencies inside df24-devtools-demo."
 echo "───────────────────────────────────────────────────────────────────────"
 npm install /home/codebuilder/df24-devtools-demo --prefix /home/codebuilder/df24-devtools-demo
 
@@ -118,7 +125,7 @@ trap handle_error ERR
 # This is required to before using Git features in VS Code.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(7) Setting global Git name/email config"
+echo "(8) Setting global Git name/email config"
 echo "───────────────────────────────────────────────────────────────────────"
 echo
 if [ -n "$github_user_name" ]; then
