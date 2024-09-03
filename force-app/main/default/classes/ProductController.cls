@@ -36,6 +36,7 @@ public with sharing class ProductController {
         @AuraEnabled
         public String[] levels { get; set; }
     }
+
     /**
      * @description Returns a list of products based on the filters.
      * @param filters The filters for the Product Console.
@@ -127,43 +128,14 @@ public with sharing class ProductController {
         // Get all fields on the specified SObject
         Map<String, Schema.SObjectField> fieldsMap = describeResult.fields.getMap();
 
-        // List to hold the names of editable fields
-        List<String> editableFields = new List<String>();
-
         // Iterate over each field to check FLS
+        List<String> editableFields = new List<String>();
         for (String fieldName : fieldsMap.keySet()) {
             Schema.DescribeFieldResult fieldDescribe = fieldsMap.get(fieldName).getDescribe();
-
-            // Check if the field is updateable (editable)
             if (fieldDescribe.isUpdateable()) {
                 editableFields.add(fieldName);
             }
         }
-
-        return editableFields;
-    }
-
-    /**
-     * @description Returns a list of editable fields for the specified SObject.
-     * @param sObjectName The SObject name.
-     * @return A list of editable fields.
-     */
-    @AuraEnabled(Cacheable=true scope='global')
-    public static List<String> getEditableFieldsForObject2(String sObjectName) {
-
-        Map<String, Schema.SObjectField> fieldsMap = Schema.getGlobalDescribe().get(sObjectName).getDescribe().fields.getMap();
-
-        List<String> editableFields = new List<String>();
-        if (fieldsMap != null) {
-            for (String fieldName : fieldsMap.keySet()) {
-                Schema.SObjectField fieldToken = Schema.getGlobalDescribe().get(sObjectName).getDescribe().fields.getMap().get(fieldName);
-                Schema.DescribeFieldResult fieldDescribe = fieldToken.getDescribe();
-                if (fieldDescribe.isUpdateable()) {
-                    editableFields.add(fieldName);
-                }
-            }
-        }
-
         return editableFields;
     }
 }
