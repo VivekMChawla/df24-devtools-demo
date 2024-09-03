@@ -1,24 +1,51 @@
+/**
+ * ProductController
+ *
+ * @description Handles the logic for the Product Console.
+ */
 public with sharing class ProductController {
     static Integer PAGE_SIZE = 9;
 
+    /**
+     * @description Contains the possible filters for the Product Console.
+     */
     public class Filters {
+        /**
+         * @description Contains the search key for the Product Console.
+         */
         @AuraEnabled
         public String searchKey { get; set; }
+        /**
+         * @description Contains the maximum price for the Product Console.
+         */
         @AuraEnabled
         public Decimal maxPrice { get; set; }
+        /**
+         * @description Contains the categories for the Product Console.
+         */
         @AuraEnabled
         public String[] categories { get; set; }
+        /**
+         * @description Contains the materials for the Product Console.
+         */
         @AuraEnabled
         public String[] materials { get; set; }
+        /**
+         * @description Contains the levels for the Product Console.
+         */
         @AuraEnabled
         public String[] levels { get; set; }
     }
-
+    /**
+     * @description Returns a list of products based on the filters.
+     * @param filters The filters for the Product Console.
+     * @param pageNumber The page number for the Product Console.
+     * @return A list of products.
+     */
     @AuraEnabled(Cacheable=true scope='global')
     public static PagedResult getProducts(Filters filters, Integer pageNumber) {
-        String key, whereClause = '';
         Decimal maxPrice;
-        // TODO split into multiple lines.
+        String key, whereClause = '';
         String[] categories, materials, levels, criteria = new List<String>{};
         if (filters != null) {
             maxPrice = filters.maxPrice;
@@ -42,7 +69,8 @@ public with sharing class ProductController {
             }
             if (filters.materials != null) {
                 materials = filters.materials;
-                criteria.add('Material__c IN :materials');
+                // TODO Re-enable the materials filter before going live.
+                //criteria.add('Material__c IN :materials');
             }
             if (criteria.size() > 0) {
                 whereClause = 'WHERE ' + String.join(criteria, ' AND ');
@@ -83,5 +111,59 @@ public with sharing class ProductController {
             WHERE Product_Family__c = :familyId AND Id != :productId
             WITH USER_MODE
         ];
+    }
+
+    /**
+     * @description Returns a list of editable fields for the Product Console.
+     * @param sObjectName The SObject name.
+     * @return A list of editable fields.
+     */
+    @AuraEnabled(Cacheable=true scope='global')
+    public static List<String> getEditableFields(String sObjectName) {
+        // Get the describe information for the provided SObject name
+        Schema.SObjectType sObjectType = Schema.getGlobalDescribe().get(sObjectName);        
+        Schema.DescribeSObjectResult describeResult = sObjectType.getDescribe();
+
+        // Get all fields on the specified SObject
+        Map<String, Schema.SObjectField> fieldsMap = describeResult.fields.getMap();
+
+        // List to hold the names of editable fields
+        List<String> editableFields = new List<String>();
+
+        // Iterate over each field to check FLS
+        for (String fieldName : fieldsMap.keySet()) {
+            Schema.DescribeFieldResult fieldDescribe = fieldsMap.get(fieldName).getDescribe();
+
+            // Check if the field is updateable (editable)
+            if (fieldDescribe.isUpdateable()) {
+                editableFields.add(fieldName);
+            }
+        }
+
+        return editableFields;
+    }
+
+    /**
+     * @description Returns a list of editable fields for the specified SObject.
+     * @param sObjectName The SObject name.
+     * @return A list of editable fields.
+     */
+    @AuraEnabled(Cacheable=true scope='global')
+    public static List<String> getEditableFieldsForObject2(String sObjectName) {
+
+        Map<String, Schema.SObjectField> fieldsMap = Schema.getGlobalDescribe().get(sObjectName).getDescribe().fields.getMap();
+
+        List<String> editableFields = new List<String>();
+        if (fieldsMap != null) {
+            for (String fieldName : fieldsMap.keySet()) {
+                Schema.SObjectField fieldToken = Schema.getGlobalDescribe().get(sObjectName).getDescribe().fields.getMap().get(fieldName);
+                Schema.DescribeFieldResult fieldDescribe = fieldToken.getDescribe();
+                if (fieldDescribe.isUpdateable()) {
+                    editableFields.add(fieldName);
+                }
+            }
+        }
+
+        return editableFields;
     }
 }
