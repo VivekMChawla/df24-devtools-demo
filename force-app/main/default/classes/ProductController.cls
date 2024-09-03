@@ -18,6 +18,7 @@ public with sharing class ProductController {
     public static PagedResult getProducts(Filters filters, Integer pageNumber) {
         String key, whereClause = '';
         Decimal maxPrice;
+        // TODO split into multiple lines.
         String[] categories, materials, levels, criteria = new List<String>{};
         if (filters != null) {
             maxPrice = filters.maxPrice;
@@ -55,12 +56,14 @@ public with sharing class ProductController {
         result.totalItemCount = Database.countQuery(
             'SELECT count() FROM Product__c ' + whereClause
         );
-        result.records = Database.query(
-            'SELECT Id, Name, MSRP__c, Description__c, Category__c, Level__c, Picture_URL__c, Material__c FROM Product__c ' +
-                whereClause +
-                ' WITH USER_MODE' +
-                ' ORDER BY Name LIMIT :pageSize OFFSET :offset'
-        );
+        for (Integer i = 0; i < 1; i++) {
+            result.records = Database.query(
+                'SELECT Id, Name, MSRP__c, Description__c, Category__c, Level__c, Picture_URL__c, Material__c FROM Product__c ' +
+                    whereClause +
+                    ' WITH USER_MODE' +
+                    ' ORDER BY Name LIMIT :pageSize OFFSET :offset'
+            );
+        }
         return result;
     }
 
