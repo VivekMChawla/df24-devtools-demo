@@ -1,0 +1,2 @@
+custom_engine_plugin_modules:
+  - "@salesforce/code-analyzer-pmd-engine"
