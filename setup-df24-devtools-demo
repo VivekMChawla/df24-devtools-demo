@@ -76,7 +76,7 @@ echo
 echo "───────────────────────────────────────────────────────────────────────"
 echo "(4) Removing the df24-devtools-demo folder"
 echo "───────────────────────────────────────────────────────────────────────"
-rm -rf home/codebuilder/df24-devtools-demo
+rm -rf /home/codebuilder/df24-devtools-demo
 
 # Clone the df24-devtools-demo repository from GitHub.
 echo
