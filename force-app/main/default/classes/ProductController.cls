@@ -47,7 +47,8 @@ public with sharing class ProductController {
     @AuraEnabled(Cacheable=true scope='global')
     public static PagedResult getProducts(Filters filters, Integer pageNumber) {
         Decimal maxPrice;
-        String key, whereClause = '';
+        String  key = '';
+        String  whereClause = '';
         String[] categories, materials, levels, criteria = new List<String>{};
         if (filters != null) {
             maxPrice = filters.maxPrice;
@@ -122,9 +123,10 @@ public with sharing class ProductController {
      */
     @AuraEnabled(Cacheable=true scope='global')
     public static List<String> getEditableFields(String sObjectName) {
+
         // Get the describe information for the provided SObject name
-        Schema.SObjectType sObjectType = Schema.getGlobalDescribe().get(sObjectName);        
-        Schema.DescribeSObjectResult describeResult = sObjectType.getDescribe();
+        Schema.SObjectType sObjectType = Schema.getGlobalDescribe().get(sObjectName);
+        Schema.DescribeSObjectResult describeResult = sObjectType.getDescribe(SObjectDescribeOptions.DEFERRED);
 
         // Get all fields on the specified SObject
         Map<String, Schema.SObjectField> fieldsMap = describeResult.fields.getMap();
