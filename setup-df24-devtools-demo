@@ -85,6 +85,19 @@ echo "(5) Cloning the df24-devtools-demo repository"
 echo "───────────────────────────────────────────────────────────────────────"
 git clone https://github.com/VivekMChawla/df24-devtools-demo.git
 
+# Install Node.js dependencies inside df24-devtools-demo.
+echo
+echo "───────────────────────────────────────────────────────────────────────"
+echo "(6) Installing Node.js dependencies inside df24-devtools-demo."
+echo "───────────────────────────────────────────────────────────────────────"
+npm install /home/codebuilder/df24-devtools-demo --prefix /home/codebuilder/df24-devtools-demo
+
+# Install the Code Analyzer PMD prototype engine.
+# echo
+# echo "───────────────────────────────────────────────────────────────────────"
+# echo "(7) Installing the Code Analyzer PMD prototype engine."
+# echo "───────────────────────────────────────────────────────────────────────"
+# npm install /home/codebuilder/df24-devtools-demo/salesforce-code-analyzer-pmd-engine-prototype.tgz --prefix /home/codebuilder/df24-devtools-demo
 
 # Disable the ERR trap and allow script errors
 # This is requied because bash interprets an attempt
@@ -105,7 +118,7 @@ trap handle_error ERR
 # This is required to before using Git features in VS Code.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(?) Setting global Git name/email config"
+echo "(7) Setting global Git name/email config"
 echo "───────────────────────────────────────────────────────────────────────"
 echo
 if [ -n "$github_user_name" ]; then
