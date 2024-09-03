@@ -20,13 +20,6 @@ custom_engine_plugin_modules:
 #      'severity' - [Optional] The severity level value that you want to use to override the default severity level for the rule
 #                   Possible values: 1 or 'Critical', 2 or 'High', 3 or 'Moderate', 4 or 'Low', 5 or 'Info'
 #      'tags'     - [Optional] The string array of tag values that you want to use to override the default tags for the rule
-#
-# [Example usage]:
-# rules:
-#   eslint:
-#     sort-vars:
-#       severity: Info
-#       tags: ["Recommended", "Suggestion"]
 rules:
   pmd:
     OneDeclarationPerLine:
@@ -37,6 +30,9 @@ rules:
       severity: 2
       tags: ["Custom"]
 
+    ApexDoc:
+      severity: 3
+      tags: ["Documentation"]
 
 # Engine specific custom configuration settings of the format engines.<engine_name>.<property_name> = <value> where
 #   <engine_name> is the name of the engine containing the rule that you want to override
@@ -46,7 +42,6 @@ rules:
 engines:
 
   # Custom configuration settings for the 'eslint' engine
-  # See <LINK_COMING_SOON> to learn more about these settings.
   eslint:
 
     # Whether to turn off the 'eslint' engine so that it is not included when running Code Analyzer commands
@@ -82,7 +77,6 @@ engines:
     typescript_file_extensions: ['.ts']
   
   # Custom configuration settings for the 'regex' engine
-  # See <LINK_COMING_SOON> to learn more about these settings.
   regex:
     # Whether to turn off the 'regex' engine so that it is not included when running Code Analyzer commands
     disable_engine: false
@@ -101,19 +95,6 @@ engines:
     #                           Default: 'Moderate'
     #     'tags'              - [Optional] The string array of tag values to apply to this rule by default.
     #                           Default: ['Recommended']
-    #
-    # [Example usage]:
-    # engines:
-    #   regex:
-    #     NoTodoComments:
-    #       regex: /\/\/[ \t]*TODO/gi
-    #       file_extensions: [".cls", ".trigger"]
-    #       description: "Prevents TODO comments from being in apex code."
-    #       violation_message: "A comment with a TODO statement was found. Please remove TODO statements from your apex code."
-    #       severity: "Info"
-    #       tags: ['TechDebt']
-    #
-
     custom_rules:
       NoTodoComments:
         regex: /\/\/[ \t]*TODO/gi
@@ -124,7 +105,6 @@ engines:
         tags: ['Custom']
 
   # Custom configuration settings for the 'retire-js' engine
-  # See <LINK_COMING_SOON> to learn more about these settings.
   retire-js:
     # Whether to turn off the 'retire-js' engine so that it is not included when running Code Analyzer commands
     disable_engine: false
