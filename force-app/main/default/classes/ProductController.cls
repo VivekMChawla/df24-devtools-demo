@@ -1,9 +1,10 @@
 /**
  * ProductController
  *
- * @description Handles the logic for the Product Console.
+ * @description Handles the logic for Product-related Lightning components.
  */
 public with sharing class ProductController {
+
     static Integer PAGE_SIZE = 9;
 
     /**
