@@ -49,3 +49,6 @@ utam-lint.sarif
 
 # Code Analyzer Logs
 code-analyzer-logs/
+
+# Package lockfile
+package-lock.json
