@@ -139,6 +139,16 @@ EOF
 echo
 echo "Created $config_file with ProdOrg as defaultusername."
 
+# Enable autocomplete for the Salesforce CLI.
+echo
+echo "───────────────────────────────────────────────────────────────────────"
+echo "(10) Enabling autocomplete for the Salesforce CLI."
+echo "───────────────────────────────────────────────────────────────────────"
+rm -f /home/codebuiler/.bashrc.local
+printf "eval $(sf autocomplete script bash)" >> /home/codebuiler/.bashrc.local; source /home/codebuiler/.bashrc
+echo
+echo "Autocomplete enabled."
+
 # Disable the ERR trap and allow script errors
 # This is requied because bash interprets an attempt
 # to read an unset git config variable as an error.
@@ -158,7 +168,7 @@ trap handle_error ERR
 # This is required to before using Git features in VS Code.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(10) Setting global Git name/email config"
+echo "(11) Setting global Git name/email config"
 echo "───────────────────────────────────────────────────────────────────────"
 echo
 if [ -n "$github_user_name" ]; then
