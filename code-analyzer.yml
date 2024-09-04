@@ -34,6 +34,10 @@ rules:
       severity: 3
       tags: ["Documentation"]
 
+    MethodNamingConventions:
+      severity: 4
+      tags: ["NamingConventions"]
+
 # Engine specific custom configuration settings of the format engines.<engine_name>.<property_name> = <value> where
 #   <engine_name> is the name of the engine containing the rule that you want to override
 #   <property_name> is the name of a property associated with the engine that you would like to set
