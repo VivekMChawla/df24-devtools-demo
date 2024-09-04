@@ -17,5 +17,5 @@ sf code-analyzer run --rule-selector=all --output-file=code-analysis.html
 
 ## Run Code Analyzer 5.0 Scan (Custom Rules)
 ```bash
-sf code-analyzer run --rule-selector=custom --output-file=code-analysis.html
+sf code-analyzer run --rule-selector=custom --view=detail
 ```
