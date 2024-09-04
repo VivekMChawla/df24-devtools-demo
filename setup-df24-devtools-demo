@@ -144,8 +144,9 @@ echo
 echo "───────────────────────────────────────────────────────────────────────"
 echo "(10) Enabling autocomplete for the Salesforce CLI."
 echo "───────────────────────────────────────────────────────────────────────"
-rm -f /home/codebuiler/.bashrc.local
-printf "eval $(sf autocomplete script bash)" >> /home/codebuiler/.bashrc.local; source /home/codebuiler/.bashrc
+rm -f /home/codebuilder/.bashrc.local
+printf "eval $(sf autocomplete script bash)" >> /home/codebuilder/.bashrc.local
+source /home/codebuilder/.bashrc
 echo
 echo "Autocomplete enabled."
 
