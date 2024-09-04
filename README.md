@@ -12,10 +12,10 @@ curl https://raw.githubusercontent.com/vivekmchawla/df24-devtools-demo/main/setu
 
 ## Run Code Analyzer 5.0 Scan (All Rules)
 ```bash
-sf code-analyzer run --rule-selector=all --output-file=output.html
+sf code-analyzer run --rule-selector=all --output-file=code-analysis.html
 ```
 
 ## Run Code Analyzer 5.0 Scan (Custom Rules)
 ```bash
-sf code-analyzer run --rule-selector=custom --output-file=output.html
+sf code-analyzer run --rule-selector=custom --output-file=code-analysis.html
 ```

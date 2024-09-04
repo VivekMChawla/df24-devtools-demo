@@ -53,3 +53,8 @@ code-analyzer-logs/
 
 # Package lockfile
 package-lock.json
+
+# Code Analyzer HTML Output
+analysis.html
+code-analysis.html
+output.html
