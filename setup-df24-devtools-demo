@@ -115,11 +115,11 @@ mkdir -p "$(dirname "$config_file")"
 # Write the JSON content to the file
 cat <<EOF > "$config_file"
 {
-  "target-org": "ProdOrg"
+  "target-org": "SandboxOrg"
 }
 EOF
 echo
-echo "Created $config_file with ProdOrg as target-org."
+echo "Created $config_file with SandboxOrg as target-org."
 
 # Create a .sfdx/sfdx-config.json file to set the default org.
 echo
@@ -133,11 +133,11 @@ mkdir -p "$(dirname "$config_file")"
 # Write the JSON content to the file
 cat <<EOF > "$config_file"
 {
-  "defaultusername": "ProdOrg"
+  "defaultusername": "SandboxOrg"
 }
 EOF
 echo
-echo "Created $config_file with ProdOrg as defaultusername."
+echo "Created $config_file with SandboxOrg as defaultusername."
 
 # Enable autocomplete for the Salesforce CLI.
 echo
