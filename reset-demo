@@ -7,7 +7,7 @@
 # Exit on any error
 set -e
 
-branchName=WI-000000
+branchName=WI-000002
 startingHash=f1852b50ceaac69470ad3515f27bbd3c38c94889
 demoDir=/home/codebuilder/df24-devtools-demo
 taskName="DF24 DevTools Demo Reset"
