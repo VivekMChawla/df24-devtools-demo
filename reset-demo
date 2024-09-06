@@ -8,7 +8,7 @@
 set -e
 
 branchName=WI-000002
-startingHash=f1852b50ceaac69470ad3515f27bbd3c38c94889
+tagName=DemoStart
 demoDir=/home/codebuilder/df24-devtools-demo
 taskName="DF24 DevTools Demo Reset"
 
@@ -51,7 +51,7 @@ echo "────────────────────────�
 echo "(1) Resetting to the demo to the starting commit."
 echo "───────────────────────────────────────────────────────────────────────"
 echo
-git reset --hard $startingHash
+git reset --hard $tagName
 
 # Push the new commit state to the remote repository.
 echo
