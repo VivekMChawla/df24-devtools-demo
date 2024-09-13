@@ -75,7 +75,7 @@ echo "────────────────────────�
 echo "(4) Deploy previous versions of Apex classes."
 echo "───────────────────────────────────────────────────────────────────────"
 echo
-sf project deploy start --source-dir force-app/main/default/classes --concise
+sf project deploy start --source-dir force-app/main/default/classes --ignore-conflicts --concise
 
 # Script completed successfully.
 handle_success
