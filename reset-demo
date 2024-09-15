@@ -1,8 +1,10 @@
 #!/bin/bash
 #
 # This script resets the DF24 Developer Tools demo workspace by doing the following:
-# 1. Locally deletes the most recent commit.
-# 2. Pushes the deletion to the remote repository.
+# 1. Resets the demo to the starting commit.
+# 2. Pushes the new commit state to the remote repository.
+# 3. Returns to the main branch.
+# 4. Deploys original versions of Apex classes.
 #
 # Exit on any error
 set -e
@@ -69,10 +71,10 @@ echo "────────────────────────�
 echo
 git checkout main
 
-# Return to the main branch.
+# Deploy original versions of Apex classes.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(4) Deploy previous versions of Apex classes."
+echo "(4) Deploying original versions of Apex classes."
 echo "───────────────────────────────────────────────────────────────────────"
 echo
 sf project deploy start --source-dir force-app/main/default/classes --ignore-conflicts --concise

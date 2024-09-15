@@ -1,8 +1,6 @@
-# DF24 DevTools Demo: Setup Intstructions
+# DF24 DevTools Demo
 
-This demo showcases the suite of Salesforce Developer Toools.
-
-TODO: Update the rest of this doc.
+This demo showcases the suite of Salesforce Pro-Code Developer Tools.
 
 ## Prepare the Code Builder Demo Environment
 
