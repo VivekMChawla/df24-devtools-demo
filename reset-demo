@@ -56,8 +56,8 @@ echo
 git reset --hard $tagName
 
 # Disable the ERR trap and allow script errors
-# This is requied because bash interprets an attempt
-# to read an unset git config variable as an error.
+# This is requied in case the reset script is run when
+# the local repo does not have the WI-000002 branch.
 trap - ERR
 set +e
 
