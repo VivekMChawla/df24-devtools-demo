@@ -55,6 +55,12 @@ echo "────────────────────────�
 echo
 git reset --hard $tagName
 
+# Disable the ERR trap and allow script errors
+# This is requied because bash interprets an attempt
+# to read an unset git config variable as an error.
+trap - ERR
+set +e
+
 # Push the new commit state to the remote repository.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
@@ -62,6 +68,10 @@ echo "(2) Pushing the new commit state to the remote repository."
 echo "───────────────────────────────────────────────────────────────────────"
 echo
 git push origin $branchName --force
+
+# Enable the ERR trap and disallow script errors.
+set -e
+trap handle_error ERR
 
 # Return to the main branch.
 echo
