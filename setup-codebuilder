@@ -63,12 +63,26 @@ echo "(1) Updating Salesforce CLI (if needed)"
 echo "───────────────────────────────────────────────────────────────────────"
 sf update stable 
 
+# Reset CLI plugins.
+echo
+echo "───────────────────────────────────────────────────────────────────────"
+echo "(2-A) Resetting CLI Plugins"
+echo "───────────────────────────────────────────────────────────────────────"
+sf plugins reset --hard
+
 # Install Code Analyzer 5.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
-echo "(2) Installing Code Analyzer 5"
+echo "(2-B) Installing Code Analyzer 5"
 echo "───────────────────────────────────────────────────────────────────────"
 sf plugins install code-analyzer
+
+# Install Agentforce DX.
+echo
+echo "───────────────────────────────────────────────────────────────────────"
+echo "(2-C) Installing Agentforce DX"
+echo "───────────────────────────────────────────────────────────────────────"
+sf plugins install agent
 
 # Install Typescript.
 echo
@@ -86,7 +100,7 @@ rm -rf $codeBuilderHomeDir/$demoProjectName
 echo
 echo "Folder removed"
 
-# Clone the df24-devtools-demo repository from GitHub.
+# Clone the demo repository from GitHub.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
 echo "(5) Cloning the $demoProjectName repository"
@@ -102,13 +116,16 @@ mkdir $codeBuilderHomeDir/$demoProjectName/code-analyzer-logs
 echo
 echo "Folder created"
 
-# Install Node.js dependencies inside df24-devtools-demo.
+# Install Node.js dependencies inside demo project.
 echo
 echo "───────────────────────────────────────────────────────────────────────"
 echo "(7) Installing Node.js dependencies inside the demo project."
 echo "───────────────────────────────────────────────────────────────────────"
-#npm install $codeBuilderHomeDir/$demoProjectName --prefix $codeBuilderHomeDir/$demoProjectName
-echo "SKIPPED"
+if [ -f "$codeBuilderHomeDir/$demoProjectName/package.json" ]; then
+  npm install $codeBuilderHomeDir/$demoProjectName --prefix $codeBuilderHomeDir/$demoProjectName
+else
+  echo "No package.json found. Skipping npm install"
+fi
 
 # Create a .sf/config.json file to set the default org.
 echo
